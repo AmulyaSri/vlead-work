@@ -1,0 +1,140 @@
+#+Title:  Handbook for Integration Engineers.
+#+Author: 
+#+Date:   [2014-10-22 Wednesday]
+#+SETUPFILE: ./org-templates/level-0.org
+
+* Handbook for Integration Engineers.
+
+** About this Document
+ - Objective 
+    + Handbook for integration engineers...etc..
+ - Prerequistics   
+    + Minimum 2GB RAM
+    + The machine should have one dedicated partition for CentOS (version 6.5 only)
+    + Minimum 50GB hard disk space
+    + The machine should have a dual core processor
+    + 
+
+Thi ;; changde It is assumed that the Integration Engineers know how to
+        + execute basic shell commands in CentOS 6.5
+        + create and delete a container in OpenVZ virtual environment
+        + create or modify an HTML page and write a code in JavaScript
+        + use git, a version control tool
+        + should have access to lab sources 
+        + convert proprietary software used in labs to open source.
+
+(Note : From IIT-B, ....)
+;; Include existing Document
+            
+** TOC of the document.(Similar to index. We'll describe each section and the workflow)
+    + About this document
+    + Prerequisities / Assumptions
+    + What are integration levels and identifying the lab level
+    + How to Move a lab from Level 0 to Level 5
+       ;; We will drive them with sample lab
+       ;; Level 0  to 1 : 
+       ;; Level 1  to 2 :
+       ;; Level 2  to 3 :
+       ;; Level 3  to 4 :
+       ;; Level 4  to 5 :
+       ;; Concluding Integration levels
+    + Converting 
+    + Performance 
+    + Security
+    + Communication Channels
+    + References 
+
+
+** Integration levels
+   ;; A short overview of what are the Integration levels. 
+       ;; Level 0 : Unversioned lab source.
+       ;; Level 1 : Lab sources on GitHub
+       ;; Level 2 : Automated build process for labs on developer m/c
+       ;; Level 3 : Deployment spec ready
+       ;; Level 4 : Testable automated build
+       ;; Level 5 : Labs structured as per UI 1.0
+      
+** Level 0 to Level 1 :
+   + Level 0 is of Unversioned lab source
+   + What is Github and How to Version the sources ?   
+
+        ++ Repository Management
+            +++ Account Creation on GitHub 
+	    ;; What is Github, Tutorial on how to create an account in Github and Git hub basics
+  
+	    +++ Creation of teams :: ;; We have 2 teams namely, Owners
+            and Integrators.  
+	         ++++ Owners - Will create the
+            repositories 
+	         ++++ Integrators - will commit and push
+            changes.  
+	    
+	    +++ Creation of a repository :: An integrator
+            will make a request to the VLEAD for creation of a
+            repository. This process has to be structured with the
+            names or mailing lists published for the integrators to
+            contact.  
+	    
+	    +++ Naming convention of the repository :: This
+            has to be finalized and documented. (discipline-LabName-InstituteName) Example :  
+	    ++ Push all the sources into the repository given by VLEAD.
+            
+
+** Level 1 to Level 2
+   + After versioning the sources, Creating the container on OpenVZ
+    Manually.  ;; Link to OpenVZ Tutorials and session in the workshop
+   + Installing the dependencies required to deploy the lab and making
+     note of the dependencies.
+   + And deploying the lab.
+
+( If any properietary software ....see this section to convert) 
+;; Structuring and creation of make file (2nd iteration)
+;; explaining make file
+;; tutorials on make 
+
+** Level 2 to Level 3 : (Structuring the lab for auto deployment)
+   + Structuring the lab sources i+ Restructure your lab into src,
+     scripts, README.md folders.
+   + Write makefile that builds the lab nad moves all files that are
+     required to run the lab into build folder.
+   + Write other scripts if necessary to automate without any manual
+     intervention.
+   + Create a labspec.json in scripts folder and put all the steps
+     into this.
+;;Creation
+;;run time requirements
+;; build requirements - 
+   + Push all your changes to your lab repository on github.
+
+
+** Level 3 to 4 :
+   + After creating Deployment specification (or labspec),
+   + Open LIK.....etc...Autodeployment Process ++ Installing OVPL and its dependencies ++
+       Deployment of lab using OVPL (Refer to LIK)
+       
+   + How to use OVPL-kit in LIK
+** Level 4 to 5 :    
+   + Structuring labs as per UI 1.0 (Refer to LIK)
+
+;; How to use UI-kit of LIK....
+
+
+** Concluding the Integration levels
+Push the lab sources in the github and informing VLEAD.
+
+
+** Improving Lab Performance 
+
+** Security of Labs
+
+** Proprietary software to open source 
+
+** Communication channels :
+ + IRC
+ + Mailing list
+ + Wiki's
+ + Weekly review meetings
+
+
+** References
+;; Include all the references here.
