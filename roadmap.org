@@ -1,0 +1,238 @@
+#+Title: Roadmap for Integration Engineers 
+#+Author:
+#+Email: 
+#+Date:[2014-10-22 Wednesday] 
+#+SETUPFILE: ./org-templates/level-0.org
+
+* Roadmap for Integration Engineers
+
+** About this Document
+*Objective*
+
+This document provides a roadmap to the Integration Engineers of
+Virtual Labs to transform their labs sources from Integration level 0
+to Integration level 5. This document provides the steps to be
+undertaken, reference documents, and the relevant support needed by
+the integration engineer during the transformation process.
+
+** Pre-requisites
+
+The Integration Engineers are expected to know the following:
+    + Execute basic shell commands in CentOS 6.5
+    + Create and delete a container in OpenVZ virtual environment
+    + Create or modify an HTML page and write and understand code in JavaScript
+    + Use git, a version control tool
+    + Should have access to sources of their labs 
+
+The Integration Engineers are expected to have the following system requirements:
+    + Minimum 2GB RAM
+    + The machine should have one dedicated partition for CentOS
+      (version 6.5 only)
+    + Minimum 50GB hard disk space
+    + 64-bit processor
+    + The machine should have a dual core processor
+
+** Timeline for deliverables
+Following is the timeline and deliverabele for an integration engineer:
+|-----------------------------------------------------------------------------------+-----------------+--------------------------------------|
+| Task                                                                              | Timeline        | Deliverable                          |
+|-----------------------------------------------------------------------------------+-----------------+--------------------------------------|
+| *Level 0 to Level 1*                                                              | 1 week          | 1) Lab sources versioned in GitHub   |
+| 1) Find the sources of all Labs                                                   |                 |                                      |
+| 2) Create an account on GitHub                                                    |                 |                                      |
+| 3) Contact VLEAD for creation of repository                                       |                 |                                      |
+| 4) Push lab sources to the assigned repository in the format mentioned in Level 1 |                 |                                      |
+|-----------------------------------------------------------------------------------+-----------------+--------------------------------------|
+| *Level 1 to Level 2*                                                              | 3 weeks per lab | 1) Successful deployment of lab      |
+| 1) Restructure the labs as per UI 1.0                                             |                 | 2) Push the sources to GitHub        |
+| 2) Install OpenVZ and create containers                                           |                 |                                      |
+| 3) Identify and install dependencies manually                                     |                 |                                      |
+| 4) Compile the sources and copy the executables to =build=                        |                 |                                      |
+| 5)  Deploy the lab                                                                |                 |                                      |
+|-----------------------------------------------------------------------------------+-----------------+--------------------------------------|
+| *Level 2 to Level 3*                                                              | 1 week per lab  | 1) Deployment of lab                 |
+| 1) Understand and write =make= file to automate the build process                 |                 | 2) Push the sources to GitHub        |
+| 2) Deploy the lab                                                                 |                 |                                      |
+|-----------------------------------------------------------------------------------+-----------------+--------------------------------------|
+| *Level 3 to Level 4*                                                              | 3 weeks per lab | 1) One page report on lab deployment |
+| 1) Collecting the specifications for the lab                                      |                 | 2) Push the sources to GitHub        |
+| 2) Populating the labspecification file                                           |                 |                                      |
+| 3) Using OVPL-kit for lab deployment                                              |                 |                                      |
+|-----------------------------------------------------------------------------------+-----------------+--------------------------------------|
+| *Level 4 to Level 5*                                                              | 2 weeks per lab | 1) Push the sources to GitHub        |
+| 1) Writing scripts for lab life cycle management                                  |                 | 2) Final report on completion        |
+|-----------------------------------------------------------------------------------+-----------------+--------------------------------------|
+                     
+                                                                                                                       
+** Integration levels
+The source code of the labs move through the various levels of
+automation during the integration process. The objective of the
+document is to help you tranform your lab sources from Level 0 to
+Level 5 as described below:
+
+- Level 0 : Unversioned
+- Level 1 : Under version control
+- Level 2 : Manually built on developer's machine
+- Level 3 : Build process is automated
+- Level 4 : Ready with deployment specification
+- Level 5 : Life cycle management
+  
+** Transformation Process from Level 0 to Level 5
+The task of integration engineer is to transform the lab source code
+to level 5 from the current existing level. Section ahead explains the
+process of transformation of lab source code at each level.
+
+
+*** Level 0 
+The goal of level 0 is to have the unversioned sources of the lab.
+
+The source code may look like the following sample as seen below:
+ [[./level-0.png][sources in level-0]]
+ 
+
+*** Level 1
+The goal of level 1 is to have the source code version controlled.
+
+*APPENDIX A* covers a tutorial on version control. Along with version controlled code,
+the source code of the lab has to be structured and organized in the following way:
+
+#+begin_example
+     + /src
+        /lab
+	  /images
+          /exp
+            /exp1
+	       /img
+               /js
+	    /exp2
+               /img
+	       /js
+        /lib
+        /themes
+        /images
+        /help
+    + /scripts (if any)
+#+end_example
+
+Below is a sample screenshot of how a level 1 source should look like:
+[[./level-1.png][Sources in level-1]]
+
+
+*** Level 2
+The goal of level 2 is to manually build and deploy the lab in
+developer environment. Before the deplolyment of the labs, it is
+advisable to restructure the labs according to the UI toolkit 1.0.
+
+*Step 1:*  Restructure the lab source code to UI 1.0 complaint. Reference document can be found [[https://github.com/Virtual-Labs/lik][here]].
+
+*Step 2:* To deploy a lab, install OpenVZ and create a container in the
+virtual environment. You can view the tutorial on how to install
+OpenVZ and create containers [[https://github.com/prakashbh/lik/blob/master/user-docs/intro-to-openvz.org][here]].
+ 
+*Step 3:* Next, enter the created container and install the dependent
+packages for the lab such as php, apache, mongodb etc.
+
+*Step 4:* Compile the source files and create a
+ =build= directory with all the executables. 
+
+*Step 5:* Now copy the build to
+#+begin_example 
+/var/www/
+#+end_example
+
+Finally, your lab is ready to be deployed.
+
+
+*** Level 3 
+The goal of level 3 is to automate the build process by writing a =make= file.
+
+*Step 1:* The lab source code is bound to change in development/test
+environment. Doing a manual build after every change is time consuming process.
+Hence the process is automated by writing a =make= file.  In simple terms, =make= file
+sequentially runs all the necessary commands to convert the source
+code to executables and populates the build.  Even the copying process of =build=
+to required =/var/www/= directory is also automated.
+
+A Sample make file for a level 3 lab would look like [[./makefile][this]].
+A Tutorials on [[http://www.gnu.org/software/make/manual/make.pdf}{Understanding][How to Write Make]] can also be referred.
+
+*Step 2:* On successful completion of the process, lab is
+deployed. Now you need to push the changes made to the github repository.
+
+
+*** Level 4
+The goal of level 4 is to develop a lab deployment specification also called a labspec.
+
+A labspec contains all the necessary information related to lab hosting
+and deployment like softwares, hardware, platform, technologies,
+authors etc.
+
+*Step 1:* 
+A sample labspec created for a lab can be found [[./labspec.json][here]]
+The template to populate your own labspec can be found [[./labbspec-template.json][here]]
+
+*Step 2:*
+Once the labspec is ready, use the OVPL kit and deploy the lab.  OVPL
+kit comes with all the necessary documentation and scripts to perform
+auto deployment of the lab.  OVPL kit can be found [[https://github.com/vlead/setup-ovpl-centos][here]].
+
+
+*** Level 5
+The goal of level 5 is to automate the life cycle management of the lab.
+
+OVPL is independent of lab specific services. Every lab will have its
+own set of services to be managed for successful usage.  Integration
+engineer is expected to identify the services and automate the management
+of identified services.
+
+For example, if a lab needs running "Apache" service, starting the
+server can be automated using a [[./startup][script]] and making it part of
+deployment process.
+
+
+** Conclusion
+Now you have concluded the conversion process. Push all your changes
+to the github repository and communicate it to the VLEAD team.
+
+
+* APPENDIX A - Version Control and GitHub
+
+The objective of this appendix is to describe why to use version
+control and how to use "GitHub" as a version control tool.
+
+The environment we work generally has timely code releases with multiple
+developers working together. The biggest challenge in such a dynamic working condition is tracking 
+changes and co-ordinating the work of every developer. In other terms we need a version control.
+
+Version control supports below mentioned features:
+       + Facility to log every version
+       + Ability to differentiate between several versions
+       + Revert back to required version
+       + Provide better collaboration among working team
+       + Convenient way of sharing data
+       + Facilitate backup of all versions produced
+
+More details about version control can be found [[http://git-scm.com/book/en/v2/Getting-Started-About-Version-Control][here]]
+
+GitHub is one of the many version control tools available today for
+version control. Following is the procedure to create an account on
+GitHub and set up a repository.
+
+*Account creation on Github*
+
+Step-1: Go to https://github.com/ and create your personal account by
+chosing a username.  Enter your email and password and click on
+"Signup for GitHub".  Screenshot can be seen below:
+[[./step-1.png][Step-1]]
+
+Step-2: You will be next asked to choose your plan. Opt for "Free"
+which is seen as the last option unless you want to go for paid
+plans. screenshot can be seen below:
+[[./step-2.png][Step-2]]
+
+Step-3: Click on "Finish signup" to finish the final step.You will see
+a confirmation message like the one in screenshot below:
+[[./signedIn.png][Account Creation Successful]]
+
+
+
