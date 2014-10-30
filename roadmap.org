@@ -110,7 +110,7 @@ the source code of the lab has to be structured and organized in the following w
                       ---- /img
                       | 
                       ---- /js      
-	       |
+	      |
                ----  /exp2
                        |    
                        ---- /img
