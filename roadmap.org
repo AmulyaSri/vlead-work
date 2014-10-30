@@ -97,21 +97,32 @@ The goal of level 1 is to have the source code version controlled.
 the source code of the lab has to be structured and organized in the following way:
 
 #+begin_example
-     + /src
-        /lab
-	  /images
-          /exp
-            /exp1
-	       /img
-               /js
-	    /exp2
-               /img
-	       /js
-        /lib
-        /themes
-        /images
-        /help
-    + /scripts (if any)
+    - /src
+        |
+        ---- /lab
+	|
+        ---- /images
+        | 
+        ---- /exp     
+               |
+               ---- /exp1
+	              |
+                      ---- /img
+                      | 
+                      ---- /js      
+	       |
+               ----  /exp2
+                       |    
+                       ---- /img
+	               |
+                       ---- /js
+        |
+        ---- /lib
+        |
+        ---- /themes
+        |
+        ---- /help
+    - /scripts (if any)
 #+end_example
 
 Below is a sample screenshot of how a level 1 source should look like:
