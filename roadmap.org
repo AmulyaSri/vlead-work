@@ -100,7 +100,7 @@ the source code of the lab has to be structured and organized in the following w
     - /src
         |
         ---- /lab
-	|
+        |
         ---- /images
         | 
         ---- /exp     
